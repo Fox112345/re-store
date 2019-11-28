@@ -1,16 +1,16 @@
 import React from 'react'
 import './shopping-card-table.css'
 import { connect } from 'react-redux'
-
+import { bookAddedToCard, allbooksRemovedFromCard, bookRemovedFromCard} from '../../actions'
 
 
 const ShoppingCardTable = ({ items, total, onInc, onDec, onDel }) => {
     const renderRow = (items, idx)=>{
-        const {id, name, count, total} = items;
+        const {id, title, count, total} = items;
         return(
             <tr key={id}>
                 <td>{idx + 1}</td>
-                <td>{name}</td>
+                <td>{title}</td>
                 <td>{count}</td>
                 <td>${total}</td>
                 <td>
@@ -68,12 +68,10 @@ const mapStateToProps = (state)=>{
     }
 };
 
-const mapDispatchToProps = () => {
-    return {
-        onInc: (id)=> console.log("Inc " + id),
-        onDec: (id)=> console.log('Dec ' + id),
-        onDel: (id)=> console.log('Del ' + id)
-    }
+const mapDispatchToProps = {
+    onInc: bookAddedToCard,
+    onDec: bookRemovedFromCard,
+    onDel: allbooksRemovedFromCard
 };
 
 
